@@ -1,0 +1,135 @@
+import yfinance as yf
+ from textblob import TextBlob
+ import pandas as pd
+ from datetime import datetime
+ import pandas as pd
+ from matplotlib.pyplot import *
+ stock_symbol = 'NVDA'
+ try:
+    # Attempt to retrieve stock data
+    stock = yf.Ticker(stock_symbol)
+    stock_data = stock.history()
+
+    # Check if data is empty
+    if stock_data.empty:
+        print("No data found for symbol:", stock_symbol)
+    else:
+        # Proceed with data analysis or visualization
+        pass
+ except Exception as e:
+    print("An error occurred:", e)
+    _empty_series = pd.Series(dtype=float)
+    def time1(t):
+  date_time = datetime.fromtimestamp(t)
+  return str(date_time)
+ stock = yf.Ticker(stock_symbol)
+ stock_data = stock.history()
+ news = stock.news
+ sentiment_scores = []
+ dates = []
+ for row in news:
+    news_timestamp = row['providerPublishTime']
+    blob = TextBlob(row['title'])
+    sentiment_score = blob.sentiment.polarity
+    sentiment_scores.append(sentiment_score)
+    dates.append(time1(news_timestamp))
+    import matplotlib.pyplot as plt
+
+# Example dates and sentiment_scores
+dates = ['2024-03-01', '2024-03-02', '2024-03-03']  # Replace with your actual dates
+sentiment_scores = [0.1, 0.5, 0.3]  # Replace with your actual sentiment scores
+
+plt.plot(dates, sentiment_scores)
+plt.xlabel('Date')
+plt.ylabel('Sentiment Score')
+plt.title('Sentiment Analysis over Time')
+
+plt.show()
+plt.plot(stock_data["Open"])
+ plt.xlabel('Date')
+ plt.ylabel('Price')
+ plt.title('Stock Open Prices over Time')
+ plt.xticks(rotation=45)
+ plt.tight_layout()
+ plt.show()
+  plt.plot(stock_data["Low"])
+ plt.xlabel('Date')
+ plt.ylabel('Price')
+ plt.title('Stock Low Prices over Time')
+ plt.xticks(rotation=45)
+ plt.tight_layout()
+ plt.show()
+  plt.plot(stock_data["High"])
+ plt.xlabel('Date')
+ plt.ylabel('Price')
+ plt.title('Stock High Prices over Time')
+ plt.xticks(rotation=45)
+ plt.tight_layout()
+ plt.show()
+ from seaborn import *
+ pairplot(stock_data,diag_kind="kde")
+ from pandas import DataFrame
+
+# Assuming you have a list of dictionaries or a dictionary of lists representing your data
+# Example data:
+news_data = [
+    {'headline': 'Breaking news 1', 'date': '2024-03-01', 'sentiment_score': 0.1},
+    {'headline': 'Breaking news 2', 'date': '2024-03-02', 'sentiment_score': 0.5},
+    {'headline': 'Breaking news 3', 'date': '2024-03-03', 'sentiment_score': 0.3}
+]
+
+# Creating DataFrame from the data
+news = DataFrame(news_data)
+
+# Now you can use the DataFrame
+print(news)
+ # Define threshold for sentiment score
+ sentiment_threshold = 0.1  # You can adjust this threshold based on your analysis
+ # Assuming sentiment_scores is defined or imported elsewhere in your code
+sentiment_scores = [0.1, 0.5, 0.3, 0.2, 0.6, 0.7, 0.4, 0.8]  # Example sentiment scores
+
+# Your code for calculating average sentiment scores with a sliding window
+sentiment_window = 7  # 7 days for example
+average_sentiment_scores = []
+for i in range(len(sentiment_scores) - sentiment_window + 1):
+    average_score = sum(sentiment_scores[i:i+sentiment_window]) / sentiment_window
+    average_sentiment_scores.append(average_score)
+
+# Printing the calculated average sentiment scores
+print(average_sentiment_scores)
+import matplotlib.pyplot as plt
+
+# Assuming you have defined or imported the necessary variables (dates, sentiment_window, predictions)
+dates = ['2024-03-01', '2024-03-02', '2024-03-03', '2024-03-04', '2024-03-05']  # Example dates
+sentiment_window = 3  # Example sentiment window
+predictions = [0, 1, 0]  # Example predictions, adjusting length to match dates
+
+# Plotting predictions
+plt.plot(dates[-len(predictions):], predictions)  # Adjusting the slice of dates to match predictions length
+plt.xlabel('Date')
+plt.ylabel('Prediction (1: Positive, 0: Negative)')
+plt.title('Stock Trend Predictions based on Sentiment Analysis')
+plt.show()
+ # Plot stock data
+ plt.plot(stock_data["Open"])
+ plt.xlabel('Date')
+ plt.ylabel('Price')
+ plt.title('Stock Open Prices over Time')
+ plt.xticks(rotation=45)
+ plt.tight_layout()
+ plt.show()
+  plt.plot(stock_data["Low"])
+ plt.xlabel('Date')
+ plt.ylabel('Price')
+ plt.title('Stock Low Prices over Time')
+ plt.xticks(rotation=45)
+ plt.tight_layout()
+ plt.show()
+  plt.plot(stock_data["High"])
+ plt.xlabel('Date')
+ plt.ylabel('Price')
+ plt.title('Stock High Prices over Time')
+ plt.xticks(rotation=45)
+ plt.tight_layout()
+ plt.show()
+ fix the errors and gve me the full code
